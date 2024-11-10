@@ -1,44 +1,57 @@
-// Get references to the form and display area
-const form = document.getElementById('resume-form') as HTMLFormElement;
-const resumeDisplayElement = document.getElementById('resume-display') as HTMLDivElement;
-
-
-// Handle form submission
-form.addEventListener('submit', (event: Event) => {
-    event.preventDefault(); 
-    //prevent page reload
-
-    // Collect input values
-    const name = (document.getElementById('name') as HTMLInputElement).value
-    const email = (document.getElementById('email') as HTMLInputElement).value
-    const phone = (document.getElementById('phone') as HTMLInputElement).value
-    const education = (document.getElementById('education') as HTMLInputElement).value
-    const experience = (document.getElementById('experience') as HTMLInputElement).value
-    const skills= (document.getElementById('skills') as HTMLInputElement).value
-
-    // Generate the resume content dynamically
-    const resumeHTML = `
-    <h2><b> Editable Resume</b></h2>
-    <h3>Personal Information</h3>
-    <p><b>Name:</b> <span contenteditable ="true">${name}</span></p>
-    <p><b>Email:</b><span contenteditable ="true">${email}</span></p>
-    <p><b>Phone:</b><span contenteditable ="true">${phone}</span></p>
-
-    <h3>Education</h3>
-    <p contenteditable ="true">${education}</p>
-
-    <h3>Experience</h3>
-    <p contenteditable ="true">${experience}</p>
-
-    <h3>Skills</h3>
-    <p contenteditable ="true">${skills}</p>
-    `;
-
-    // Display the generated resume
-    if(resumeDisplayElement) {
-        resumeDisplayElement.innerHTML = resumeHTML
-
-    }else {
-        console.error('then resume display is missing.');
-    }
-});
+// Wait for the DOM to load
+window.addEventListener('DOMContentLoaded', () => {
+    const resumeForm = document.getElementById('resume-form') as HTMLFormElement;
+    const resumeOutput = document.getElementById('resume-output') as HTMLDivElement;
+  
+    resumeForm.addEventListener('submit', function(event: Event) {
+      event.preventDefault();
+  
+      const formData = new FormData(resumeForm);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const contact = formData.get('contact') as string;
+      const education = formData.get('education') as string;
+      const experience = formData.get('experience') as string;
+      const skills = formData.get('skills') as string;
+      const photoFile = formData.get('photo') as File;
+  
+      // Convert the uploaded photo to a base64 string if provided
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const photoURL = event.target?.result as string;
+  
+        // Update the resume output with the photo and form details
+        resumeOutput.innerHTML = `
+          <h2>*** Your Generated Resume ***</h2>
+          ${photoURL ? `<img src="${photoURL}" alt="User Photo" ">` : ""}
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Number:</strong> ${contact}</p>
+          <p><strong>Education:</strong> ${education}</p>
+          <p><strong>Experience:</strong> ${experience}</p>
+          <p><strong>Skills:</strong> ${skills}</p>
+        `;
+  
+        resumeOutput.style.display = 'block';
+      };
+  
+      if (photoFile) {
+        reader.readAsDataURL(photoFile);
+      } else {
+        // If no photo is uploaded, display the details without a photo
+        resumeOutput.innerHTML = `
+          <h2>Your Generated Resume</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone Number:</strong> ${contact}</p>
+          <p><strong>Education:</strong> ${education}</p>
+          <p><strong>Experience:</strong> ${experience}</p>
+          <p><strong>Skills:</strong> ${skills}</p>
+        `;
+  
+        resumeOutput.style.display = 'block';
+      }
+    });
+  });
+  
+  

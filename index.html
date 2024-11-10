@@ -1,51 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Resume Builder</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Editable Resume Builder</h1>
-    <form id="resume-form">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Editable Resume</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="resume-form">
+      <form id="resume-form">
+        <h1>Editable Resume</h1>
         <fieldset>
-            <legend>Personal Information</legend>
-            <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+          <legend>Personal Information</legend>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required />
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="contact" placeholder="Enter your phone number" required />
+
+          <label for="photo">Upload Photo:</label>
+          <input type="file" id="photo" name="photo" accept="image/*" />
+        </fieldset>
+        
+        <fieldset>
+          <legend>Education</legend>
+          <label for="education">Education:</label>
+          <textarea id="education" name="education" placeholder="Enter your education" rows="4" required></textarea>
         </fieldset>
 
         <fieldset>
-            <legend>Education</legend>
-            <label for="education">Education:</label>
-            <textarea id="education" placeholder="Enter your education" rows="4" required></textarea>
+          <legend>Experience</legend>
+          <label for="experience">Experience:</label>
+          <textarea id="experience" name="experience" placeholder="Enter your experience" rows="4" required></textarea>
         </fieldset>
 
         <fieldset>
-            <legend>Experience</legend>
-            <label for="experience">Experience:</label>
-            <textarea id="experience" placeholder="Enter your experience" rows="4" required></textarea>
+          <legend>Skills</legend>
+          <label for="skills">Skills:</label>
+          <textarea id="skills" name="skills" placeholder="Enter your skills" rows="4" required></textarea>
         </fieldset>
-
-        <fieldset>
-            <legend>Skills</legend>
-            <label for="skills">Skills:</label>
-            <textarea id="skills" placeholder="Enter your skills" rows="4" required></textarea>
-        </fieldset>
-
-        <button type="submit"><b>Generate Resume</b></button>
+        
+        <div class="btn-group">
+          <button type="submit" class="generate">Generate Resume</button>
+          <button type="reset" class="reset">Reset Resume</button>
+        </div>
+        <div id="resume-output" class="generated-resume" contenteditable="true" style="display: none;"></div>
     </form>
-    <br>
-    <!--  Dynamic and Editable Resume -->
-     <div id="resume-display" contenteditable="true">
-        <!-- Resume will be generated below -->
-     </div>
-     <script src="index.js"></script>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 </html>
