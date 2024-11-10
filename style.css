@@ -6,15 +6,21 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+
 }
 
 form {
   margin: auto;
+  width: 900px;
   background-color: #edf2f4;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   padding: 20px;
-  max-width: 600px;
+  max-width: 100%; /* Adjust max-width for responsiveness */
 }
 
 h1 {
@@ -125,3 +131,60 @@ button:hover {
     height: 150px;
     
   }
+  @media (max-width: 768px) {
+    /* Adjust font sizes and spacing for smaller screens */
+    h1 {
+        font-size: 24px;
+    }
+
+    label, input, textarea {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    .generated-resume {
+        font-size: 14px;
+    }
+
+    /* Additional adjustments for smaller screens */
+    form {
+        max-width: 95%; /* Increase max-width for more space */
+    }
+
+    .generated-resume img {
+        max-width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for smaller screens */
+    h1 {
+        font-size: 20px;
+    }
+
+    label, input, textarea {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    .generated-resume {
+        font-size: 12px;
+    }
+
+    /* Additional adjustments for smaller screens */
+    form {
+        max-width: 98%; /* Increase max-width for more space */
+    }
+
+    .generated-resume img {
+        max-width: 100px;
+        height: 100px;
+    }
+}

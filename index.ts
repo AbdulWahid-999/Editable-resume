@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
         resumeOutput.innerHTML = `
           <h2>*** Your Generated Resume ***</h2>
           ${photoURL ? `<img src="${photoURL}" alt="User Photo" ">` : ""}
-          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Name:</strong> <${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Number:</strong> ${contact}</p>
           <p><strong>Education:</strong> ${education}</p>
